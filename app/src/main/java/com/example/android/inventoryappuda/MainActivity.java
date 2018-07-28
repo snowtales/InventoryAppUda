@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayDatabaseInfo() {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
         String[] projection = {
+                BooksContract.BooksEntry._ID,
                 BooksContract.BooksEntry.BOOKNAME,
                 BooksContract.BooksEntry.PRICE,
                 BooksContract.BooksEntry.QUANTITY,

@@ -31,7 +31,7 @@ public class Booksdb extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + BooksContract.BooksEntry.TABLE_NAME + " (" +
-                    BooksContract.BooksEntry._ID + " INTEGER PRIMARY KEY," +
+                    BooksContract.BooksEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     BooksContract.BooksEntry.BOOKNAME + " TEXT NOT NULL," +
                     BooksContract.BooksEntry.PRICE + " INTEGER NOT NULL," +
                     BooksContract.BooksEntry.QUANTITY + " INTEGER NOT NULL," +
