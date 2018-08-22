@@ -45,7 +45,6 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
     };
     private int quantity = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +61,6 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
             getLoaderManager().initLoader(CURRENT_LOADER, null, this);
         }
 
-
         titleEdit = findViewById(R.id.edit_title);
         priceEdit = findViewById(R.id.edit_price);
         quantEdit = findViewById(R.id.edit_quantity);
@@ -73,7 +71,6 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
         morebtn = findViewById(R.id.more_button);
         callbtn = findViewById(R.id.call_button);
 
-
         titleEdit.setOnTouchListener(fieldTouchListener);
         priceEdit.setOnTouchListener(fieldTouchListener);
         quantEdit.setOnTouchListener(fieldTouchListener);
@@ -83,23 +80,21 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
         morebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    quantity=Integer.parseInt(String.valueOf(quantEdit.getText()));
-                    quantity++;
-                    quantEdit.setText(String.valueOf(quantity));
-                            }
+                quantity = Integer.parseInt(String.valueOf(quantEdit.getText()));
+                quantity++;
+                quantEdit.setText(String.valueOf(quantity));
+            }
         });
         lessbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (quantity > 0) {
-                    quantity=Integer.parseInt(String.valueOf(quantEdit.getText()));
+                    quantity = Integer.parseInt(String.valueOf(quantEdit.getText()));
                     quantity--;
                     quantEdit.setText(String.valueOf(quantity));
                 }
-
             }
         });
-
         callbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +116,6 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
                 BooksContract.BooksEntry.SUPPLIER,
                 BooksContract.BooksEntry.PHONESUP};
 
-
         return new CursorLoader(this,
                 currentUri,
                 projection,
@@ -129,7 +123,6 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
                 null,
                 null);
     }
-
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
@@ -213,6 +206,7 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
             }
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.editor_option_menu, menu);
@@ -236,16 +230,18 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
                 String titleString = titleEdit.getText().toString();
                 String priceString = priceEdit.getText().toString();
                 String quantString = quantEdit.getText().toString();
-                if(TextUtils.isEmpty(titleString)){
+                if (TextUtils.isEmpty(titleString)) {
                     Toast.makeText(this, "Add title", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if(TextUtils.isEmpty(priceString)){
+                if (TextUtils.isEmpty(priceString)) {
                     Toast.makeText(this, "Add price", Toast.LENGTH_SHORT).show();
-                    break;}
-                if(TextUtils.isEmpty(quantString)){
+                    break;
+                }
+                if (TextUtils.isEmpty(quantString)) {
                     Toast.makeText(this, "Add quantity", Toast.LENGTH_SHORT).show();
-                    break;}
+                    break;
+                }
 
                 saveBook();
                 finish();
@@ -270,7 +266,6 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     private void showUnsavedChangesDialog(
             DialogInterface.OnClickListener discardButtonClickListener) {

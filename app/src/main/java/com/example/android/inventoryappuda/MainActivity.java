@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 startActivity(intent);
             }
         });
-        FloatingActionButton fab =  findViewById(R.id.fab);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         return super.onOptionsItemSelected(item);
     }
 
-    public void insertBook(){
+    public void insertBook() {
         ContentValues values = new ContentValues();
         values.put(BooksContract.BooksEntry.BOOKNAME, "Poetry by Pushkin");
         values.put(BooksContract.BooksEntry.QUANTITY, 7);
@@ -85,9 +86,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void deleteAll() {
-       getContentResolver().delete(BooksContract.BooksEntry.CONTENT_URI, null, null);
+        getContentResolver().delete(BooksContract.BooksEntry.CONTENT_URI, null, null);
     }
-
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoaderReset(Loader<Cursor> loader) {
         bookCursorAdapter.swapCursor(null);
     }
+
     public void saleProduct(long productId, int quantity) {
 
         if (quantity >= 1) {
