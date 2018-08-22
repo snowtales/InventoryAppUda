@@ -1,5 +1,6 @@
 package com.example.android.inventoryappuda;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -7,8 +8,10 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +28,8 @@ import com.example.android.inventoryappuda.database.BooksContract;
 
 public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final int PERMISSIONS_REQUEST_PHONE_CALL = 100;
+    private static String[] PERMISSIONS_PHONECALL = {Manifest.permission.CALL_PHONE};
     private static final int CURRENT_LOADER = 0;
     private Uri currentUri;
     private EditText titleEdit;
@@ -98,12 +103,33 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
         callbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phone = phoneEdit.getText().toString().trim();
-                Uri uri = Uri.parse("tel:" + phone);
-                Intent intent = new Intent(Intent.ACTION_CALL, uri);
-                startActivity(intent);
+                call();
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        if (requestCode == PERMISSIONS_REQUEST_PHONE_CALL) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission is granted
+                call();
+            } else {
+                Toast.makeText(this, "Sorry!!! Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void call() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PERMISSIONS_REQUEST_PHONE_CALL);
+        } else {
+            String phone = phoneEdit.getText().toString().trim();
+            Uri uri = Uri.parse("tel:" + phone);
+            Intent intent = new Intent(Intent.ACTION_CALL, uri);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -185,6 +211,12 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
         }
         values.put(BooksContract.BooksEntry.QUANTITY, quantity);
 
+        int phoneSupp = 0;
+        if (!TextUtils.isEmpty(phoneString)){
+            phoneSupp = Integer.parseInt(phoneString);
+        }
+        values.put(BooksContract.BooksEntry.PHONESUP, phoneSupp);
+
         if (currentUri == null) {
             Uri newUri = getContentResolver().insert(BooksContract.BooksEntry.CONTENT_URI, values);
 
@@ -229,7 +261,8 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
             case R.id.edit_save:
                 String titleString = titleEdit.getText().toString();
                 String priceString = priceEdit.getText().toString();
-                String quantString = quantEdit.getText().toString();
+                String suppString = suppEdit.getText().toString();
+                String phoneString = phoneEdit.getText().toString();
                 if (TextUtils.isEmpty(titleString)) {
                     Toast.makeText(this, "Add title", Toast.LENGTH_SHORT).show();
                     break;
@@ -238,10 +271,15 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
                     Toast.makeText(this, "Add price", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (TextUtils.isEmpty(quantString)) {
-                    Toast.makeText(this, "Add quantity", Toast.LENGTH_SHORT).show();
+                if (quantity>0) {
+                }else {Toast.makeText(this, "Add quantity", Toast.LENGTH_SHORT).show();
+                    break;}
+                if (TextUtils.isEmpty(suppString)){
+                    Toast.makeText(this, "Add Shop to buy book", Toast.LENGTH_SHORT).show();
                     break;
                 }
+                if (Integer.parseInt(phoneString)>0){}else{Toast.makeText(this, "Add Phone of Shop to buy book", Toast.LENGTH_SHORT).show();
+                    break;}
 
                 saveBook();
                 finish();
@@ -288,7 +326,7 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
         builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                deletePet();
+                deleteBook();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -302,7 +340,7 @@ public class EditAct extends AppCompatActivity implements LoaderManager.LoaderCa
         alertDialog.show();
     }
 
-    private void deletePet() {
+    private void deleteBook() {
         if (currentUri != null) {
             int rowsDeleted = getContentResolver().delete(currentUri, null, null);
             if (rowsDeleted == 0) {

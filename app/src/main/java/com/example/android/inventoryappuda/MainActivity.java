@@ -95,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 BooksContract.BooksEntry._ID,
                 BooksContract.BooksEntry.BOOKNAME,
                 BooksContract.BooksEntry.QUANTITY,
-                BooksContract.BooksEntry.SUPPLIER};
+                BooksContract.BooksEntry.SUPPLIER,
+                BooksContract.BooksEntry.PRICE};
 
         return new CursorLoader(this,
                 BooksContract.BooksEntry.CONTENT_URI,

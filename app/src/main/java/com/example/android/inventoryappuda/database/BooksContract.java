@@ -25,7 +25,9 @@ public final class BooksContract {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH;
 
         public static final String TABLE_NAME = "books";
-        public static final String _ID = BaseColumns._ID;
+        /**        public static final String _ID = BaseColumns._ID;
+         *
+         */
         public static final String BOOKNAME = "name";
         public static final String PRICE = "price";
         public static final String QUANTITY = "quantity";

@@ -29,22 +29,28 @@ public class BookCursorAdapter extends CursorAdapter {
     public void bindView(View view, final Context context, Cursor cursor) {
 
         TextView nameTextView = view.findViewById(R.id.title);
-        final TextView quantityTextView = view.findViewById(R.id.quantity);
+        final TextView quantityTextView = view.findViewById(R.id.quantity_textview);
         TextView suppTextView = view.findViewById(R.id.shop_name);
+        TextView priceTextView = view.findViewById(R.id.price_textview);
+
 
         Button minusButton = view.findViewById(R.id.sale_button);
 
         int titleColumnIndex = cursor.getColumnIndex(BooksContract.BooksEntry.BOOKNAME);
         int quantityColumnIndex = cursor.getColumnIndex(BooksContract.BooksEntry.QUANTITY);
         int suppColumnIndex = cursor.getColumnIndex(BooksContract.BooksEntry.SUPPLIER);
+        int priceColumnIndex = cursor.getColumnIndex(BooksContract.BooksEntry.PRICE);
 
         String bookTitle = cursor.getString(titleColumnIndex);
         String quantityOfBook = cursor.getString(quantityColumnIndex);
         String supplierShop = cursor.getString(suppColumnIndex);
+        String priceBook = cursor.getString(priceColumnIndex);
 
         nameTextView.setText(bookTitle);
         quantityTextView.setText(quantityOfBook);
         suppTextView.setText(supplierShop);
+        priceTextView.setText(priceBook);
+
         final long id = cursor.getInt(cursor.getColumnIndexOrThrow(BooksContract.BooksEntry._ID));
         final int qty = Integer.parseInt(quantityOfBook);
 
