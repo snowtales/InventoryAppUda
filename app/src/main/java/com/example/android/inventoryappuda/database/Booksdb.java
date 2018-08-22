@@ -32,7 +32,7 @@ public class Booksdb extends SQLiteOpenHelper {
                     BooksContract.BooksEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     BooksContract.BooksEntry.BOOKNAME + " TEXT NOT NULL," +
                     BooksContract.BooksEntry.PRICE + " INTEGER NOT NULL," +
-                    BooksContract.BooksEntry.QUANTITY + " INTEGER NOT NULL," +
+                    BooksContract.BooksEntry.QUANTITY + " INTEGER NOT NULL DEFAULT 0," +
                     BooksContract.BooksEntry.SUPPLIER + " TEXT," +
                     BooksContract.BooksEntry.PHONESUP + " INTEGER)";
 

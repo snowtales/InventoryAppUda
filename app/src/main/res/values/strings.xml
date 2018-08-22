@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">InventoryAppUda</string>
+    <string name="action_insert_dummy_data">Insert Pushkin</string>
+    <string name="action_delete_all_entries">Delete Everything</string>
+    <string name="title">Book Title</string>
+    <string name="price">Price</string>
+    <string name="quantity">Quantity</string>
+    <string name="supp">Supplier</string>
+    <string name="phone">Supplier\'s phone</string>
+    <string name="hint_name">Title Here</string>
+    <string name="hint_price">Price</string>
+    <string name="hint_quantity">How Much?</string>
+    <string name="hint_supp">Where to buy?</string>
+    <string name="hint_supp_phone">Phone number</string>
+    <string name="new_book">Add new book</string>
+    <string name="edit_book">Edit book info</string>
+    <string name="editor_insert_failed">Can not save new book</string>
+    <string name="editor_insert_successful">New book saved successfully!</string>
+    <string name="editor_update_failed">We can\'t update info, sorry</string>
+    <string name="editor_update_successfull">We update info successfully!</string>
+    <string name="editor_option_save">Save item</string>
+    <string name="editor_option_del">Delete item</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="delete_dialog_msg">Delete this item?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="editor_delete_successful">Item deleted successfully!</string>
+    <string name="editor_delete_failed">Error with deleting item</string>
+    <string name="sale_ok">Saled successfully!</string>
+    <string name="sale_not">Sale error!</string>
+    <string name="sale_out_stock">There is nothing to sale</string>
+    <string name="empty_text">You don\'t have any book</string>
+    <string name="empty_sub">Let\'s add something new to read?</string>
+
 </resources>
