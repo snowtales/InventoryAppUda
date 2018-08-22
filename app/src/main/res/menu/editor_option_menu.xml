@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".EditAct">
+    <item
+        android:id="@+id/edit_save"
+        android:title="@string/editor_option_save"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/edit_delete"
+        android:title="@string/editor_option_del"
+        app:showAsAction="never" />
+
+</menu>
